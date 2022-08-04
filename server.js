@@ -52,21 +52,20 @@ app.get('/', (req, res) => {
 app.get('/member', async (req, res) => {
     try {
         const member = await Member.find({});
-        res.send(member);
+        res.json(member);
     } catch (error) {
         console.log('error: ', error);
-        res.send({error: 'something went wrong - check console'});
+        res.json({error: 'something went wrong - check console'});
     }
 });
 
 // Create 
 app.post('/member', async (req, res) => {
     try {
-        const customer = await Member.create(req.body);
-        res.send(customer);
+        res.json(await Member.create(req.body));
     } catch (error) {
         console.log('error: ', error);
-        res.send({error: 'something went wrong - check console'});
+        res.json({error: 'something went wrong - check console'});
     }
 });
 
