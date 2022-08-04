@@ -45,7 +45,7 @@ const Member = mongoose.model('Member', memberSchema);
 
 // Mount Routes
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.send('Hello and welcome to the TCStuidio app');
 });
 
 // Index
