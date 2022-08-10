@@ -9,7 +9,6 @@ const cors = require('cors');
 const app = express();
 
 
-
 // Comfigure App Settings
 require('dotenv').config();   
 const { PORT = 4000, MONGODB_URL } = process.env;
@@ -70,10 +69,29 @@ app.post('/member', async (req, res) => {
 });
 
 // Update 
+app.put('/member/:id', async (req, res) => {
+    try {
+        res.json(await Member.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        ));
 
+    } catch (error) {
+        console.log('error:', error);
+        res.json({error: 'something went wrong - check console'});
+    }
+});
 
 // Delete
-
+app.delete('/member/:id', async (req, res) => {
+    try {
+        res.json(await Member.findByIdAndDelete(req.params.id));
+    } catch (error) {
+        console.log('error:', error);
+        res.json({error: 'something went wrong - check console'});
+    }
+});
 
 
 
